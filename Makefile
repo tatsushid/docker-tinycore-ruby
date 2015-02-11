@@ -1,0 +1,14 @@
+RUBY_DIRS := 2.2
+ONBUILD_DIRS := 2.2/onbuild
+
+.PHONY: all clean $(RUBY_DIRS) $(ONBUILD_DIRS)
+
+all: $(RUBY_DIRS) $(ONBUILD_DIRS)
+
+clean: $(ONBUILD_DIRS) $(RUBY_DIRS)
+
+$(RUBY_DIRS):
+	$(MAKE) -C $@ $(MAKECMDGOALS)
+
+$(ONBUILD_DIRS):
+	$(MAKE) -C $@ $(MAKECMDGOALS)
