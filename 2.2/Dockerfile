@@ -48,7 +48,7 @@ RUN tce-load -wic \
     && for PKG in `ls *-dev.tcz`; do \
             echo "Removing $PKG files"; \
             for F in `unsquashfs -l $PKG | grep squashfs-root | sed -e 's/squashfs-root//'`; do \
-                [ -f $F ] && sudo rm -f $F; \
+                [ -f $F -o -L $F ] && sudo rm -f $F; \
             done; \
             INSTALLED=$(echo -n $PKG | sed -e s/.tcz//); \
             sudo rm -f /usr/local/tce.installed/$INSTALLED; \
@@ -68,7 +68,7 @@ RUN tce-load -wic \
                 xorg-proto.tcz; do \
             echo "Removing $PKG files"; \
             for F in `unsquashfs -l $PKG | grep squashfs-root | sed -e 's/squashfs-root//'`; do \
-                [ -f $F ] && sudo rm -f $F; \
+                [ -f $F -o -L $F ] && sudo rm -f $F; \
             done; \
             INSTALLED=$(echo -n $PKG | sed -e s/.tcz//); \
             sudo rm -f /usr/local/tce.installed/$INSTALLED; \
