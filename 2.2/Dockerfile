@@ -25,8 +25,8 @@ RUN tce-load -wic \
         libX11-dev \
         libXss \
         xorg-proto \
-    && wget -O - "http://cache.ruby-lang.org/pub/ruby/$RUBY_MAJOR/ruby-$RUBY_VERSION.tar.bz2" \
-        | tar -xjf - -C /tmp \
+    && wget -O - "http://cache.ruby-lang.org/pub/ruby/$RUBY_MAJOR/ruby-$RUBY_VERSION.tar.xz" \
+        | tar -xJf - -C /tmp \
     && cd "/tmp/ruby-$RUBY_VERSION" \
     && autoconf \
     && ./configure --disable-install-doc \
