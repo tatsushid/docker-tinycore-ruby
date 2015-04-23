@@ -7,6 +7,8 @@ This provides a small but a fully functional MRI [Ruby](https://www.ruby-lang.or
 
 - [`2.2` (2.2/Dockerfile)][Latest Dockerfile]
 - [`2.2-onbuild` (2.2/onbuild/Dockerfile)](https://github.com/tatsushid/docker-tinycore-ruby/blob/master/2.2/onbuild/Dockerfile)
+- [`2.1` (2.1/Dockerfile)](https://github.com/tatsushid/docker-tinycore-ruby/blob/master/2.1/Dockerfile)
+- [`2.1-onbuild` (2.1/onbuild/Dockerfile)](https://github.com/tatsushid/docker-tinycore-ruby/blob/master/2.1/onbuild/Dockerfile)
 
 ## How to use this image
 
