@@ -1,5 +1,5 @@
-RUBY_DIRS := 2.2
-ONBUILD_DIRS := 2.2/onbuild
+RUBY_DIRS := 2.2 2.1
+ONBUILD_DIRS := 2.2/onbuild 2.1/onbuild
 
 .PHONY: all clean $(RUBY_DIRS) $(ONBUILD_DIRS)
 
