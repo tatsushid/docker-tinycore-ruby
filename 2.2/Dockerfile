@@ -3,7 +3,7 @@ FROM tatsushid/tinycore:6.3-x86_64
 # Instructions are run with 'tc' user
 
 ENV RUBY_MAJOR 2.2
-ENV RUBY_VERSION 2.2.2
+ENV RUBY_VERSION 2.2.3
 
 RUN tce-load -wic \
         bison \
