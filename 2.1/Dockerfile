@@ -82,7 +82,7 @@ RUN tce-load -wic \
 USER root
 
 # skip installing gem documentation
-RUN echo 'gem: --no-rdoc --no-ri' >> "$HOME/.gemrc"
+RUN echo -e 'install: --no-document\nupdate: --no-document' >> "$HOME/.gemrc"
 
 # install things globally, for great justice
 RUN mkdir /usr/local/bundle
