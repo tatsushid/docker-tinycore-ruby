@@ -4,6 +4,7 @@ FROM tatsushid/tinycore:6.3-x86_64
 
 ENV RUBY_MAJOR 2.1
 ENV RUBY_VERSION 2.1.7
+ENV RUBYGEMS_VESION 2.4.8
 ENV BUNDLER_VERSION 1.10.6
 
 RUN tce-load -wic \
@@ -83,6 +84,9 @@ USER root
 
 # skip installing gem documentation
 RUN echo -e 'install: --no-document\nupdate: --no-document' >> "$HOME/.gemrc"
+
+# Update gem itself
+RUN gem update --system $RUBYGEMS_VERSION
 
 # install things globally, for great justice
 RUN mkdir /usr/local/bundle
