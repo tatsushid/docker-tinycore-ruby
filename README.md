@@ -1,7 +1,7 @@
 Ruby on Tiny Core Linux
 =======================
 
-This provides a small but a fully functional MRI [Ruby](https://www.ruby-lang.org/) runtime environment. This image is based on my [Tiny Core Linux Docker image](https://registry.hub.docker.com/u/tatsushid/tinycore/).
+This provides a small but a fully functional MRI [Ruby](https://www.ruby-lang.org/) runtime environment. This image is based on my [Tiny Core Linux Docker image](https://hub.docker.com/r/tatsushid/tinycore/).
 
 ## Supported tags and respective `Dockerfile` links
 
@@ -12,7 +12,7 @@ This provides a small but a fully functional MRI [Ruby](https://www.ruby-lang.or
 
 ## How to use this image
 
-This can be used in the same way as [Official Ruby Image](https://registry.hub.docker.com/_/ruby/). Please see "How to use this image" section of it with replacing the image name with this one.
+This can be used in the same way as [Official Ruby Image](https://hub.docker.com/_/ruby/). Please see "How to use this image" section of it with replacing the image name with this one.
 
 ## How to install C extension etc.
 
