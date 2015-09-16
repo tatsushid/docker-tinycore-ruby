@@ -19,7 +19,7 @@ RUN tce-load -wic \
         linux-3.16.2_api_headers \
         glibc_base-dev \
         libffi-dev \
-        openssl-1.0.0-dev \
+        openssl-dev \
         tcl-dev \
         tk-dev \
         readline-dev \
