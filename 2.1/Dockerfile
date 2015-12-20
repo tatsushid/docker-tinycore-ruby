@@ -5,7 +5,6 @@ FROM tatsushid/tinycore:6.4-x86_64
 ENV RUBY_MAJOR 2.1
 ENV RUBY_VERSION 2.1.7
 ENV RUBYGEMS_VESION 2.4.8
-ENV BUNDLER_VERSION 1.10.6
 
 RUN tce-load -wic \
         bison \
@@ -92,6 +91,9 @@ RUN gem update --system $RUBYGEMS_VERSION
 RUN mkdir /usr/local/bundle
 ENV GEM_HOME /usr/local/bundle
 ENV PATH $GEM_HOME/bin:$PATH
+
+ENV BUNDLER_VERSION 1.10.6
+
 RUN gem install bundler --version "$BUNDLER_VERSION" \
     && bundle config --global path "$GEM_HOME" \
     && bundle config --global bin "$GEM_HOME/bin"
