@@ -3,7 +3,8 @@ FROM tatsushid/tinycore:6.4-x86_64
 # Instructions are run with 'tc' user
 
 ENV RUBY_MAJOR 2.2
-ENV RUBY_VERSION 2.2.3
+ENV RUBY_VERSION 2.2.4
+ENV RUBY_DOWNLOAD_SHA1 9216cf34df7fd5ce8059a6403951d6d47964442a
 ENV RUBYGEMS_VERSION 2.5.1
 
 RUN tce-load -wic \
@@ -26,8 +27,11 @@ RUN tce-load -wic \
         libX11-dev \
         libXss \
         xorg-proto \
-    && wget -O - "http://cache.ruby-lang.org/pub/ruby/$RUBY_MAJOR/ruby-$RUBY_VERSION.tar.xz" \
-        | tar -xJf - -C /tmp \
+    && cd /tmp \
+    && wget -O ruby.tar.xz "http://cache.ruby-lang.org/pub/ruby/$RUBY_MAJOR/ruby-$RUBY_VERSION.tar.xz" \
+    && echo "$RUBY_DOWNLOAD_SHA1  ruby.tar.xz" | sha1sum -c - \
+    && tar -xJf ruby.tar.xz \
+    && rm ruby.tar.xz \
     && cd "/tmp/ruby-$RUBY_VERSION" \
     && autoconf \
     && ./configure --disable-install-doc \
