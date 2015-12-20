@@ -4,7 +4,7 @@ FROM tatsushid/tinycore:6.4-x86_64
 
 ENV RUBY_MAJOR 2.2
 ENV RUBY_VERSION 2.2.3
-ENV RUBYGEMS_VERSION 2.4.8
+ENV RUBYGEMS_VERSION 2.5.1
 
 RUN tce-load -wic \
         bison \
