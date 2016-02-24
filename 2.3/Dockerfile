@@ -1,4 +1,4 @@
-FROM tatsushid/tinycore:6.4-x86_64
+FROM tatsushid/tinycore:7.0-x86_64
 
 # Instructions are run with 'tc' user
 
@@ -8,6 +8,7 @@ ENV RUBY_DOWNLOAD_SHA1 96e620e38af351c8da63e40cfe217ec79f912ba1
 ENV RUBYGEMS_VERSION 2.5.1
 
 RUN tce-load -wic \
+        bash \
         bison \
         flex \
         file \
@@ -16,7 +17,8 @@ RUN tce-load -wic \
         autoconf \
         make \
         m4 \
-        linux-3.16.2_api_headers \
+        linux-4.2.1_api_headers \
+        glibc_add_lib \
         glibc_base-dev \
         libffi-dev \
         openssl-dev \
@@ -34,7 +36,7 @@ RUN tce-load -wic \
     && rm ruby.tar.xz \
     && cd "/tmp/ruby-$RUBY_VERSION" \
     && autoconf \
-    && ./configure --disable-install-doc \
+    && bash -c './configure --disable-install-doc' \
     && make \
     && mkdir tmp_install \
     && make install DESTDIR=tmp_install \
@@ -59,6 +61,7 @@ RUN tce-load -wic \
             sudo rm -f /usr/local/tce.installed/$INSTALLED; \
         done \
     && for PKG in autoconf.tcz \
+                bash.tcz \
                 binutils.tcz \
                 bison.tcz \
                 cloog.tcz \
@@ -66,7 +69,7 @@ RUN tce-load -wic \
                 flex.tcz \
                 gcc.tcz \
                 gcc_libs.tcz \
-                linux-3.16.2_api_headers.tcz \
+                linux-4.2.1_api_headers.tcz \
                 m4.tcz \
                 make.tcz \
                 perl5.tcz \
