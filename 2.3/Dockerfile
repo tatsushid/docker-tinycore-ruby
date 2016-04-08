@@ -36,7 +36,7 @@ RUN tce-load -wic \
     && rm ruby.tar.xz \
     && cd "/tmp/ruby-$RUBY_VERSION" \
     && autoconf \
-    && bash -c './configure --disable-install-doc' \
+    && bash -c 'XCFLAGS="-DENABLE_PATH_CHECK=0" ./configure --disable-install-doc' \
     && make \
     && mkdir tmp_install \
     && make install DESTDIR=tmp_install \
@@ -89,23 +89,24 @@ RUN tce-load -wic \
 USER root
 
 # skip installing gem documentation
-RUN echo -e 'install: --no-document\nupdate: --no-document' >> "$HOME/.gemrc"
+RUN echo -e 'install: --no-document\nupdate: --no-document' >> "/usr/local/etc/gemrc"
 
 # Update gem itself
 RUN gem update --system $RUBYGEMS_VERSION
 
-# install things globally, for great justice
-RUN mkdir /usr/local/bundle
-ENV GEM_HOME /usr/local/bundle
-ENV PATH $GEM_HOME/bin:$PATH
-
 ENV BUNDLER_VERSION 1.11.2
 
-RUN gem install bundler --version "$BUNDLER_VERSION" \
-    && bundle config --global path "$GEM_HOME" \
-    && bundle config --global bin "$GEM_HOME/bin"
+RUN gem install bundler --version "$BUNDLER_VERSION"
 
-# don't create ".bundle" in all our apps
-ENV BUNDLE_APP_CONFIG $GEM_HOME
+# install things globally, for great justice
+# and don't create ".bundle" in all our apps
+ENV GEM_HOME /usr/local/bundle
+ENV BUNDLE_PATH="$GEM_HOME" \
+    BUNDLE_BIN="$GEM_HOME/bin" \
+    BUNDLE_SILENCE_ROOT_WARNING=1 \
+    BUNDLE_APP_CONFIG="$GEM_HOME"
+ENV PATH $BUNDLE_BIN:$PATH
+RUN mkdir -p "$GEM_HOME" "$BUNDLE_BIN" \
+    && chmod 777 "$GEM_HOME" "$BUNDLE_BIN"
 
 CMD ["irb"]
