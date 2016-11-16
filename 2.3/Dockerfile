@@ -94,7 +94,7 @@ RUN echo -e 'install: --no-document\nupdate: --no-document' >> "/usr/local/etc/g
 # Update gem itself
 RUN gem update --system $RUBYGEMS_VERSION
 
-ENV BUNDLER_VERSION 1.11.2
+ENV BUNDLER_VERSION 1.13.6
 
 RUN gem install bundler --version "$BUNDLER_VERSION"
 
