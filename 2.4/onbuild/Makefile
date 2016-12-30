@@ -1,5 +1,5 @@
 IMAGE_NAME := tinycore-ruby
-IMAGE_TAG := 2.3
+IMAGE_TAG := 2.4-onbuild
 
 .PHONY: all clean build
 
